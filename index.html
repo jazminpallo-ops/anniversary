@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Our Anniversary Getaway 💗</title>
+
+<style>
+  :root{
+    --bg:#fff0f6;
+    --card:#ffffff;
+    --text:#1f1f1f;
+    --muted:#5c5c5c;
+
+    --accent:#ff4d88;
+    --accent2:#ffd1e1;
+
+    --soft:#fff7fb;
+    --border:#ffd6e7;
+
+    --deep:#a01445;
+    --deep2:#7a1230;
+
+    --shadow: 0 10px 40px rgba(0,0,0,.10);
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background: radial-gradient(circle at top,#ffe0ee,var(--bg));
+    color:var(--text);
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    padding:24px;
+  }
+
+  .wrap{
+    width:min(850px,100%);
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:22px;
+    padding:22px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(255,214,231,.60);
+    overflow:hidden;
+  }
+
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 12px;
+    border-radius:999px;
+    background:var(--soft);
+    border:1px solid var(--border);
+    color:var(--deep);
+    font-weight:800;
+    font-size:14px;
+    width:fit-content;
+  }
+
+  h1{
+    margin:10px 0 6px;
+    font-size:clamp(24px,4.4vw,42px);
+    line-height:1.1;
+  }
+
+  .sub{
+    margin:0;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.5;
+  }
+
+  /* Images */
+  .heroimg{
+    width:100%;
+    height:280px;
+    border-radius:18px;
+    overflow:hidden;
+    margin-top:14px;
+    border:1px solid var(--border);
+    background:#fff;
+  }
+  .heroimg img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+  }
+
+  /* Countdown */
+  .countdown{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:16px;
+  }
+  .tile{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px;
+    text-align:center;
+  }
+  .num{
+    font-size:22px;
+    font-weight:900;
+    color:var(--deep2);
+    line-height:1;
+  }
+  .lbl{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:6px;
+    font-weight:700;
+  }
+
+  /* Weather */
+  .weatherRow{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:14px;
+  }
+  .wday{
+    flex:1 1 160px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:12px;
+    min-width:160px;
+  }
+  .wday strong{ color:var(--deep); }
+  .wmeta{
+    margin-top:10px;
+    background:#fff;
+    border:1px solid var(--border);
+    padding:10px;
+    border-radius:12px;
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  /* Accordions */
+  details.card{
+    padding:0;
+  }
+  details > summary{
+    list-style:none;
+    cursor:pointer;
+    font-weight:900;
+    color:var(--deep);
+    padding:18px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    background:var(--soft);
+  }
+  summary::-webkit-details-marker{ display:none; }
+
+  .chev{
+    width:34px;
+    height:34px;
+    border-radius:999px;
+    display:grid;
+    place-items:center;
+    background:#fff;
+    border:1px solid var(--border);
+    color:var(--deep2);
+    font-weight:900;
+    flex:0 0 auto;
+    transition:transform .15s ease;
+  }
+  details[open] .chev{ transform:rotate(45deg); }
+
+  .content{
+    padding:0 18px 18px;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6;
+    background:var(--soft);
+  }
+
+  .pillrow{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:10px;
+  }
+  .pill{
+    background:var(--accent2);
+    color:var(--deep2);
+    border-radius:999px;
+    padding:7px 11px;
+    font-size:13px;
+    font-weight:900;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .note{
+    margin-top:12px;
+    background:#fff;
+    border:1px solid var(--border);
+    padding:10px 12px;
+    border-radius:12px;
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  /* Table */
+  .tableWrap{
+    margin-top:10px;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:#fff;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+  }
+  th, td{
+    padding:12px;
+    border-bottom:1px solid rgba(255,214,231,.7);
+    vertical-align:top;
+    text-align:left;
+  }
+  th{
+    background:#fff7fb;
+    color:var(--deep);
+    font-size:13px;
+    letter-spacing:.2px;
+  }
+  tr:last-child td{ border-bottom:0; }
+
+  .footer{
+    text-align:center;
+    font-size:13px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- INTRO + COUNTDOWN -->
+  <section class="card">
+    <div class="badge">💗 Our Anniversary Getaway</div>
+    <h1>Hi amor</h1>
+    <p class="sub">
+      I made this little page so you can feel relaxed and reassured — no pressure, no tasks.
+      I’ve got the details. You just show up and we enjoy being together.
+    </p>
+
+    <!-- CHANGED: hero.jpg -> Ana.jpg -->
+    <div class="heroimg">
+      <img src="Ana.jpg" alt="Ana" />
+    </div>
+
+    <div class="countdown" aria-label="Countdown">
+      <div class="tile"><div id="d" class="num">--</div><div class="lbl">Days</div></div>
+      <div class="tile"><div id="h" class="num">--</div><div class="lbl">Hours</div></div>
+      <div class="tile"><div id="m" class="num">--</div><div class="lbl">Minutes</div></div>
+      <div class="tile"><div id="s" class="num">--</div><div class="lbl">Seconds</div></div>
+    </div>
+
+    <div class="note" id="countdownLabel" style="margin-top:12px;">
+      Counting down…
+    </div>
+  </section>
+
+  <!-- WEATHER -->
+  <section class="card">
+    <div class="badge">🌤 Weather (Sat + Sun)</div>
+    <p class="sub" style="margin-top:10px;">
+      Just so we pack right — we’ll be cosy either way.
+    </p>
+
+    <div class="wmeta" id="weatherMeta">Loading weather for Liphook…</div>
+    <div class="weatherRow" id="weatherRow" aria-live="polite"></div>
+  </section>
+
+  <!-- ACCORDIONS (only one open at a time) -->
+  <details class="card acc" open>
+    <summary>📍 Location <span class="chev">+</span></summary>
+    <div class="content">
+      <p style="margin-top:0;">
+        We’re booked 😌💗 Here are the only bits you’ll actually need.
+      </p>
+
+      <!-- Optional: add one Airbnb photo (same folder) -->
+      <div class="heroimg" style="height:240px; margin-top:10px;">
+        <img src="airbnb.jpg" alt="Our stay" />
+      </div>
+
+      <div class="pillrow" style="margin-top:12px;">
+        <div class="pill">🕒 Check-in: <span id="checkInText">2:00pm</span></div>
+        <div class="pill">🕚 Check-out: <span id="checkOutText">11:00am</span></div>
+        <div class="pill">🍳 Continental Breakfast: <span id="breakfastText">Included</span></div>
+      </div>
+
+      <div class="note">
+        <b>Amenities we’ll actually use:</b>
+        <div class="pillrow" style="margin-top:10px;">
+          <div class="pill">🛁 Hot tub</div>
+          <div class="pill">🚿 Hairdryer / Shampoo / Shower Gel</div>
+          <div class="pill">🪵 Indoor fireplace</div>
+          <div class="pill">🍽️ Kitchen</div>
+          <div class="pill">🧖‍♀️ Towels / Iron</div>
+        </div>
+      </div>
+
+      <div class="note">
+        <b>Airbnb link:</b> only if you want to peek at photos / listing details.
+        <div style="margin-top:10px;">
+          <a class="pill" href="https://www.airbnb.co.uk/trips/shared/3f8c7c20-79e8-4c61-9da1-a272a37d3cd2?confCode=HMTBKMDCDS&principal_token=aa8316b6-82b9-4292-a829-1b565786f61c&s=67&unique_share_id=c5ff3452-b86c-413b-b62d-3bcbc292a75a" target="_blank" rel="noopener">
+            🏡 Open the listing
+          </a>
+        </div>
+      </div>
+
+      <div class="note">
+        Don’t worry about directions/parking — I’m handling it. You just bring yourself 🫶
+      </div>
+    </div>
+  </details>
+
+  <details class="card acc">
+    <summary>🗓 Itinerary <span class="chev">+</span></summary>
+    <div class="content">
+      <p style="margin-top:0;">
+        A gentle plan (aka: vibes). We can change anything depending on how we feel.
+      </p>
+
+      <p><b>Saturday</b></p>
+
+      <div class="tableWrap">
+        <table aria-label="Itinerary table">
+          <thead>
+            <tr>
+              <th style="width:22%;">Time</th>
+              <th style="width:38%;">Plan</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>11:00am</td>
+              <td>Pick up + Drive to Brunch</td>
+              <td>No rush. Music, comfy clothes.</td>
+            </tr>
+            <tr>
+              <td>12:00pm</td>
+              <td>Brunch in Guildford</td>
+              <td>A small stop to get some food out of London</td>
+            </tr>
+            <tr>
+              <td>1:30pm</td>
+              <td>Snack shop!</td>
+              <td>Grab some snacks for the evening and morning after</td>
+            </tr>
+            <tr>
+              <td>2:30pm</td>
+              <td>Arrive at AirBnB</td>
+              <td>Settle in and relax in the AirBnB <br>Movies and some cosy indoor activities</td>
+            </tr>
+            <tr>
+              <td>4:30pm</td>
+              <td>Optional sunset walk</td>
+              <td>Depending how you feel, we can go on a short sunset walk near the AirBnB</td>
+            </tr>
+            <tr>
+              <td>6:00pm</td>
+              <td>Cooking time!</td>
+              <td>Jazmin cooks and Ana relaxes!</td>
+            </tr>
+            <tr>
+              <td>7:00pm</td>
+              <td>Romantic dinner</td>
+              <td>Surprise menu but three-course: Starter, Main and Dessert!</td>
+            </tr>
+            <tr>
+              <td>8:30pm</td>
+              <td>Hot tub</td>
+              <td>If you feel up for it!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><b>Sunday</b></p>
+
+      <div class="tableWrap">
+        <table aria-label="Itinerary table">
+          <thead>
+            <tr>
+              <th style="width:22%;">Time</th>
+              <th style="width:38%;">Plan</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10:00am</td>
+              <td>Breakfast</td>
+              <td>Continental breakfast included</td>
+            </tr>
+            <tr>
+              <td>11:00am</td>
+              <td>Check out</td>
+              <td>Drive back or head to the sea if you're up for it!</td>
+            </tr>
+            <tr>
+              <td>Rest of the day</td>
+              <td>TBC</td>
+              <td>We can grab some lunch by the sea or head home and settle back, all up to you!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        🫶 Main rule: we choose what feels good in the moment. Nothing is a “must”.
+      </div>
+    </div>
+  </details>
+
+  <details class="card acc">
+    <summary>👗 What to wear <span class="chev">+</span></summary>
+    <div class="content">
+      <p style="margin-top:0;">
+        Think: comfy + cute + warm. Nothing fancy required (unless you feel like it 😌).
+      </p>
+
+      <div class="pillrow">
+        <div class="pill">🩱 Swimsuit (hot tub)</div>
+        <div class="pill">🧥 Warm layer</div>
+        <div class="pill">👟 Walking shoes</div>
+        <div class="pill">🧦 Cosy clothes</div>
+      </div>
+    </div>
+  </details>
+
+  <details class="card acc">
+    <summary>🧳 What to bring <span class="chev">+</span></summary>
+    <div class="content">
+      <p style="margin-top:0;">Only the basics — I’ll handle the rest.</p>
+
+      <div class="pillrow">
+        <div class="pill">🔌 Charger</div>
+        <div class="pill">🧴 Toiletries</div>
+        <div class="pill">💊 Essentials</div>
+      </div>
+
+      <div class="note">
+        I’ll pack the “extras” (snacks / playlists / little surprises) 🥰
+      </div>
+    </div>
+  </details>
+
+  <p class="footer">Made with love by Jazmin 💗</p>
+</div>
+
+<script>
+  /**********************************************************
+   * CONFIG — edit these
+   **********************************************************/
+  const CONFIG = {
+    // Countdown target (set your actual getaway start time)
+    countdownTarget: "2026-03-07T11:00:00",
+
+    // Weather location: Liphook approx coords
+    lat: 51.075,
+    lon: -0.803,
+    timezone: "Europe/London"
+  };
+
+  /**********************************************************
+   * COUNTDOWN
+   **********************************************************/
+  const cd = {
+    d: document.getElementById("d"),
+    h: document.getElementById("h"),
+    m: document.getElementById("m"),
+    s: document.getElementById("s"),
+    label: document.getElementById("countdownLabel"),
+  };
+
+  function pad2(n){ return String(n).padStart(2,"0"); }
+
+  function updateCountdown(){
+    const target = new Date(CONFIG.countdownTarget);
+    const now = new Date();
+    const diff = target - now;
+
+    if (isNaN(target.getTime())) {
+      cd.label.textContent = "Set your countdownTarget in the CONFIG section.";
+      cd.d.textContent = cd.h.textContent = cd.m.textContent = cd.s.textContent = "--";
+      return;
+    }
+
+    if (diff <= 0){
+      cd.label.textContent = "We’re in getaway mode 😌💗";
+      cd.d.textContent = cd.h.textContent = cd.m.textContent = cd.s.textContent = "00";
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / (3600*24));
+    const hours = Math.floor((totalSeconds % (3600*24)) / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+
+    cd.d.textContent = pad2(days);
+    cd.h.textContent = pad2(hours);
+    cd.m.textContent = pad2(mins);
+    cd.s.textContent = pad2(secs);
+
+    const pretty = target.toLocaleString(undefined, { dateStyle:"medium", timeStyle:"short" });
+    cd.label.textContent = `Counting down to ${pretty}…`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /**********************************************************
+   * WEATHER (Open-Meteo): ONLY show Saturday & Sunday
+   **********************************************************/
+  const weatherMeta = document.getElementById("weatherMeta");
+  const weatherRow = document.getElementById("weatherRow");
+
+  function codeToText(code){
+    const map = {
+      0:"Clear",
+      1:"Mainly clear", 2:"Partly cloudy", 3:"Overcast",
+      45:"Fog", 48:"Rime fog",
+      51:"Light drizzle", 53:"Drizzle", 55:"Dense drizzle",
+      61:"Light rain", 63:"Rain", 65:"Heavy rain",
+      71:"Light snow", 73:"Snow", 75:"Heavy snow",
+      80:"Showers", 81:"Showers", 82:"Heavy showers",
+      95:"Thunderstorm"
+    };
+    return map[code] ?? "Weather";
+  }
+
+  async function loadWeather(){
+    try{
+      const url =
+        `https://api.open-meteo.com/v1/forecast?latitude=${CONFIG.lat}&longitude=${CONFIG.lon}` +
+        `&daily=weathercode,temperature_2m_max,temperature_2m_min&forecast_days=10&timezone=${encodeURIComponent(CONFIG.timezone)}`;
+
+      const res = await fetch(url);
+      if(!res.ok) throw new Error("Weather fetch failed");
+      const data = await res.json();
+
+      const days = data?.daily?.time || [];
+      const max = data?.daily?.temperature_2m_max || [];
+      const min = data?.daily?.temperature_2m_min || [];
+      const code = data?.daily?.weathercode || [];
+
+      weatherRow.innerHTML = "";
+
+      let shown = 0;
+      for(let i=0; i<days.length; i++){
+        const date = new Date(days[i] + "T00:00:00");
+        const day = date.getDay(); // Sun=0 ... Sat=6
+
+        // Only Saturday (6) and Sunday (0)
+        if(day !== 6 && day !== 0) continue;
+
+        const box = document.createElement("div");
+        box.className = "wday";
+        box.innerHTML = `
+          <div style="display:flex; justify-content:space-between; gap:10px; align-items:flex-start;">
+            <strong>${date.toLocaleDateString("en-GB",{weekday:"long"})}</strong>
+            <span style="font-weight:900; color:var(--deep2);">${Math.round(max[i])}° / ${Math.round(min[i])}°</span>
+          </div>
+          <div style="margin-top:6px; font-size:13px; color:var(--muted);">${codeToText(code[i])}</div>
+        `;
+        weatherRow.appendChild(box);
+        shown++;
+        if (shown >= 2) break; // just Sat + Sun
+      }
+
+      weatherMeta.textContent = shown
+        ? "Weekend forecast for Liphook (Saturday + Sunday)."
+        : "Couldn’t find Sat/Sun in the forecast window yet.";
+
+    }catch(e){
+      weatherMeta.textContent = "Weather couldn’t load right now (check your internet).";
+      weatherRow.innerHTML = "";
+    }
+  }
+  loadWeather();
+
+  /**********************************************************
+   * ACCORDION BEHAVIOUR: only one open at a time
+   **********************************************************/
+  const accordions = Array.from(document.querySelectorAll("details.acc"));
+
+  accordions.forEach(d => {
+    d.addEventListener("toggle", () => {
+      if (!d.open) return; // only act when opening
+      accordions.forEach(other => {
+        if (other !== d) other.open = false;
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
